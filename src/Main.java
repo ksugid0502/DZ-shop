@@ -11,7 +11,7 @@ public class Main {
         list1.add("Показать");
         list1.add("Удалить");
         ArrayList<String> list2 = new ArrayList<>();
-        List(list1);
+        list(list1);
 
         System.out.println("Список возможных операций:");
 
@@ -21,7 +21,7 @@ public class Main {
             if ("end".equals(input)) {
                 break;
             }
-            if (Digit((input))) {
+            if (digit((input))) {
                 int choice = Integer.parseInt(input);
                 switch (choice) {
                     case 1:
@@ -32,21 +32,21 @@ public class Main {
                         break;
                     case 2:
                         System.out.println("Список покупок:");
-                        List(list2);
+                        list(list2);
                         break;
                     case 3:
                         System.out.println("Список покупок:");
-                        List(list2);
+                        list(list2);
                         System.out.println("Какую хотите удалить? Выберите номер или название");
                         String delete = scanner.nextLine();
                         boolean removed;
-                        if (Digit(delete)) {
-                            removed = DeleteIndex(list2, delete);
+                        if (digit(delete)) {
+                            removed = deleteIndex(list2, delete);
                         } else {
-                            removed = Delete2(list2, delete);
+                            removed = delete2(list2, delete);
                         }
-                        Delete(delete, removed);
-                        List(list2);
+                        delete1(delete, removed);
+                        list(list2);
                         break;
                     default:
                         System.out.println("Данной операции не существует");
@@ -57,19 +57,22 @@ public class Main {
 
         }
     }
-    private static void List(List<String> list) {
+
+    private static void list(List<String> list) {
         for (int i = 0; i < list.size(); i++) {
             System.out.println((i + 1) + ". " + list.get(i));
         }
     }
-    private static void Delete (String delete, boolean removed) {
+
+    private static void delete1(String delete, boolean removed) {
         if (removed) {
             System.out.println("Покупка \"" + delete + "\" удалена. Список покупок:");
         } else {
             System.out.println("Товара нет в вашем списке");
         }
     }
-    private static boolean DeleteIndex(List<String> list, String delete) {
+
+    private static boolean deleteIndex(List<String> list, String delete) {
         int index = Integer.parseInt(delete);
         if (index > list.size()) {
             return false;
@@ -77,7 +80,8 @@ public class Main {
         list.remove(index - 1);
         return true;
     }
-    private static boolean Delete2 (List<String> list, String delete) {
+
+    private static boolean delete2(List<String> list, String delete) {
         boolean removed = false;
         for (int i = 0; i < list.size(); i++) {
             if (delete.equals(list.get(i))) {
@@ -87,7 +91,8 @@ public class Main {
         }
         return removed;
     }
-    private static boolean Digit(String input) {
+
+    private static boolean digit(String input) {
         try {
             Integer.parseInt(input);
             return true;
